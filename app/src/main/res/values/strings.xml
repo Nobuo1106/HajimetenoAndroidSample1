@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">HajimetenoAndroid1</string>
-    <string name="hello_world">Hello World</string>
+    <string name="contact">サポートサイトはhttps://developer.apple.com/ です。お問い合わせは、メール webmaster@msn.com、または電話 047-000-0000 からお願いします。</string>
     <string name="btnCurrent">現在時刻</string>
 </resources>
