@@ -4,35 +4,26 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
 import android.view.View
+import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import java.util.Date
+import java.util.Locale
 
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-    }
 
-    fun btnCurrentClick(v: View) {
-       val txtResult = findViewById<TextView>(R.id.txtResult)
-        txtResult.text = Date().toString()
-        Log.d("CurrentTime", Date().toString())
-        val toast = Toast.makeText(this, Date().toString(), Toast.LENGTH_LONG)
-        toast.show()
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        val txtResult = findViewById<TextView>(R.id.txtResult)
-        outState.putString("txtResult", txtResult.text.toString())
-    }
-
-    override fun onRestoreInstanceState (savedInstanceState: Bundle){
-        super.onRestoreInstanceState(savedInstanceState)
-        val txtResult = findViewById<TextView>(R.id.txtResult)
-        txtResult.text = savedInstanceState.getString("txtResult")
+        val rate = findViewById<RatingBar>(R.id.rating)
+        rate.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
+            ratingBar.contentDescription = rating.toString()
+            Toast.makeText(
+                this@MainActivity,
+                String.format(Locale.JAPAN, "現在の評価は%fです。", rating),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 }
